@@ -24,3 +24,36 @@ body {
   color: var(--tg-theme-text-color);
   font-family: Arial, Helvetica, sans-serif;
 }
+@media (hover:hover) {
+  .button:hover{
+    background-color: #0d9488 ;
+  }
+  .button-gold:hover{
+    border-color: #e9c41e;  
+    outline-width: 2px;
+    outline-color: #e9c41e;
+  }
+  .button-red:hover{
+    background-color: crimson;
+  }
+  .button-times:hover{
+    color: #374151;
+  }
+}
+
+/* это для включения active вместо hover на мобилках */
+@media (hover:none) {
+  .button:active{
+    background-color: #7309ca ;
+  }
+  .button-gold:active{
+    background-color: #7309ca ;
+  }
+  .button-red:active{
+    background-color: #7309ca ;
+  }
+  .button-times:active{
+    color :#7309ca;
+  }
+}
+

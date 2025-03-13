@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { UiButton } from "@/shared/ui-button";
 
 
 
@@ -23,11 +24,9 @@ const handleClose=()=>{window.Telegram.WebApp.close()}
   return (
       <main className="flex flex-col gap-[32px] row-start-2 items-center ">
         <div className="text-red-700 text-4xl text-center">HELLO</div>
-        <button 
+        <UiButton variant="primary" 
         className="text-2xl text-amber-300"
-        onClick={handleClose} 
-
-        >Close</button>
+        onClick={handleClose}>CLOSE</UiButton>
 
       </main>
   );
