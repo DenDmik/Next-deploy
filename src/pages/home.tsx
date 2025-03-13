@@ -39,7 +39,7 @@ const handleClose=()=>{tg?.close()}
         {/* <UiButton variant="secondary" 
         className="text-2xl text-teal-600"
         onClick={userInfo}>User Info</UiButton> */}
-        <span className="h-20 text-3xl text-red-800">user:{tg?.initDataUnsafe?.user?.userName}</span>
+        <span className="h-20 text-3xl text-red-800">user:{tg?.initDataUnsafe?.user?.username}</span>
         <Footer/>
 
       </main>
