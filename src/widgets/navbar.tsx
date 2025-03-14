@@ -1,6 +1,6 @@
 
 import { UiButton } from '@/shared/ui-button';
-// import logo from '@/images/logo.png';
+import { useTelegram} from '@/hooks/useTelegram'
 
 
 
@@ -15,6 +15,7 @@ export function NavBar({
     isAuthenticated: boolean;
   }){
 
+const telegram = useTelegram()
 
   return (
 
@@ -52,6 +53,7 @@ export function NavBar({
              }
              > Контакты
             </UiButton>
+            <UiButton variant='goldoutlined'onClick={telegram?.onClose}></UiButton>
           {/* </Link> */}
           {/* кнопка временно отсутствует для лендинга */}
           {/* <Link href="/technologies">

@@ -3,6 +3,16 @@ import { UiButton } from "@/shared/ui-button";
 import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
 
+import { WebApp } from "@twa-dev/types";
+
+declare global {
+  interface Window {
+    Telegram: {
+      WebApp: WebApp;
+    };
+  }
+}
+
 export interface Iuser{
   user?:string|null|undefined
 }
@@ -11,9 +21,7 @@ export default function Home() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // @ts-expect-error проверка
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      // @ts-expect-error проверка
       const tg = window.Telegram.WebApp;
       tg.ready();
       setIsReady(true);
@@ -21,7 +29,6 @@ export default function Home() {
   }, []);
 
   if (!isReady) return null; 
-// @ts-expect-error проверка
 const tg = window.Telegram.WebApp
 
 // const[userData,setUserData]= useState<Iuser>({user:null})
