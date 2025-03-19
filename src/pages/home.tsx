@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, } from "react";
 import { UiButton } from "@/shared/ui-button";
 import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
@@ -36,8 +36,7 @@ export default function Home() {
 const telegram = useTelegram()
 useEffect(()=>{
   telegram?.tg.ready()
-},[])
-const tg = telegram?.tg
+},[telegram?.tg])
 const userName = telegram?.user?.username
 
 // const userInfo =()=>{setUserData({user:tg?.initDataUnsafe?.user?.userName})}
