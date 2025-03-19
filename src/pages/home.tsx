@@ -19,20 +19,6 @@ export interface Iuser{
 }
 
 export default function Home() {
-//   const [isReady, setIsReady] = useState(false);
-
-//   useEffect(() => {
-//     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-//       const tg = window.Telegram.WebApp;
-//       tg.ready();
-//       setIsReady(true);
-//     }
-//   }, []);
-
-//   if (!isReady) return null; 
-// const tg = window.Telegram.WebApp
-
-// const[userData,setUserData]= useState<Iuser>({user:null})
 const telegram = useTelegram()
 useEffect(()=>{
   telegram?.tg.ready()

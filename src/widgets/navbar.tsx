@@ -1,6 +1,7 @@
 
 import { UiButton } from '@/shared/ui-button';
 import { useTelegram} from '@/hooks/useTelegram'
+import Link from 'next/link';
 
 
 
@@ -56,11 +57,11 @@ const telegram = useTelegram()
             <UiButton variant='goldoutlined'onClick={telegram?.onToggleButton}></UiButton>
           {/* </Link> */}
           {/* кнопка временно отсутствует для лендинга */}
-          {/* <Link href="/technologies">
+          <Link href="/stepstable">
             <UiButton disabled={false} variant="primary">
-              Технологии
+              StepsTable
             </UiButton>
-          </Link> */}
+          </Link>
 
           {/* Кнопка Вход/Выход в зависимости от авторизации */}
           {/* кнопка временно отсутствует для лендинга */}
