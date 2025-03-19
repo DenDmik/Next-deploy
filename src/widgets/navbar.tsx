@@ -53,7 +53,7 @@ const telegram = useTelegram()
              }
              > Контакты
             </UiButton>
-            <UiButton variant='goldoutlined'onClick={telegram?.onClose}></UiButton>
+            <UiButton variant='goldoutlined'onClick={telegram?.onToggleButton}></UiButton>
           {/* </Link> */}
           {/* кнопка временно отсутствует для лендинга */}
           {/* <Link href="/technologies">

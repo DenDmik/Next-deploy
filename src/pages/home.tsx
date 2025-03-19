@@ -4,6 +4,7 @@ import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
 
 import { WebApp } from "@twa-dev/types";
+import { useTelegram } from "@/hooks/useTelegram";
 
 declare global {
   interface Window {
@@ -18,23 +19,27 @@ export interface Iuser{
 }
 
 export default function Home() {
-  const [isReady, setIsReady] = useState(false);
+//   const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      tg.ready();
-      setIsReady(true);
-    }
-  }, []);
+//   useEffect(() => {
+//     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+//       const tg = window.Telegram.WebApp;
+//       tg.ready();
+//       setIsReady(true);
+//     }
+//   }, []);
 
-  if (!isReady) return null; 
-const tg = window.Telegram.WebApp
+//   if (!isReady) return null; 
+// const tg = window.Telegram.WebApp
 
 // const[userData,setUserData]= useState<Iuser>({user:null})
+const telegram = useTelegram()
+useEffect(()=>{
+  telegram?.tg.ready()
+},[])
+const tg = telegram?.tg
+const userName = telegram?.user?.username
 
-
-const handleClose=()=>{tg?.close()}
 // const userInfo =()=>{setUserData({user:tg?.initDataUnsafe?.user?.userName})}
   return (
       <main className="min-h-screen flex flex-col gap-[32px] justify-between items-center ">
@@ -42,11 +47,11 @@ const handleClose=()=>{tg?.close()}
         <div className="text-red-700 text-4xl text-center">HELLO</div>
         <UiButton variant="primary" 
         className="text-2xl text-amber-700"
-        onClick={handleClose}>CLOSE</UiButton>
+        onClick={telegram?.onClose}>CLOSE</UiButton>
         {/* <UiButton variant="secondary" 
         className="text-2xl text-teal-600"
         onClick={userInfo}>User Info</UiButton> */}
-        <span className="h-20 text-3xl text-red-800">user:{tg?.initDataUnsafe?.user?.username}</span>
+        <span className="h-20 text-3xl text-red-800">user:{userName}</span>
         <Footer/>
 
       </main>
