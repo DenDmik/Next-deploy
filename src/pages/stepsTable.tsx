@@ -1,4 +1,5 @@
 import { UiButton } from "@/shared/ui-button"
+import Link from "next/link"
 export default function StepsTable(){
 ///ReactContext:
     // const{isModalOpen,handleOpenModal,handleCloseModal} = useModal()
@@ -66,6 +67,12 @@ export default function StepsTable(){
                     Получить консультацию 
                   </p>
           </UiButton>
+           <Link href="/">
+                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10" disabled={false} variant="primary">
+                       <p className='text-lg/5  text-teal-600'>
+                         Back to the Home </p>
+                      </UiButton>
+                    </Link>
      </div>
 </div>
     )
