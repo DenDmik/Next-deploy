@@ -20,6 +20,7 @@ export interface Iuser{
 
 export default function Home() {
 const telegram = useTelegram()
+
 useEffect(()=>{
   telegram?.tg.ready()
 },[telegram?.tg])

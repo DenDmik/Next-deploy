@@ -16,20 +16,23 @@ export function useTelegram() {
     const onClose = () => {
         tg.close()
     }
+    const MainButton = tg.MainButton.setParams({text:'HELLO MAIN BUTTON'})
+
 
     const onToggleButton = () => {
-        if(tg.MainButton.isVisible) {
-            tg.MainButton.hide();
+        if(MainButton.isVisible) {
+            MainButton.hide();
         } else {
-            tg.MainButton.show();
+            MainButton.show();
         }
     }
-
+    
     return {
         onClose,
         onToggleButton,
         tg,
         user: tg.initDataUnsafe?.user,
         queryId: tg.initDataUnsafe?.query_id,
+        MainButton
     }
 }
