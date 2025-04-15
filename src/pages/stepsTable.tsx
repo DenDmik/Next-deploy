@@ -68,7 +68,7 @@ export default function StepsTable(){
                   </p>
           </UiButton>
            <Link href="/">
-                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10" disabled={false} variant="primary">
+                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10" disabled={false} variant="goldoutlined">
                        <p className='text-lg/5  text-teal-600'>
                          Back to the Home </p>
                       </UiButton>

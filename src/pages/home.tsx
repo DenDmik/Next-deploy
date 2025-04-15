@@ -1,4 +1,4 @@
-import { useEffect, } from "react";
+import { useCallback, useEffect, useState, } from "react";
 import { UiButton } from "@/shared/ui-button";
 import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
@@ -20,13 +20,43 @@ export interface Iuser{
 
 export default function Home() {
 const telegram = useTelegram()
+ const [donat,setDonat]= useState<number>(0)
 
 useEffect(()=>{
   telegram?.tg.ready()
 },[telegram?.tg])
 const userName = telegram?.user?.username
+//////////////////////////////////////
+const queryId = telegram?.queryId
+const onSendData = useCallback(() => {
+  const data = {
+      queryId,
+    donat,
+  }
+  fetch('http://localhost:3000/createInvoice', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  })
+}, [donat])
 
-// const userInfo =()=>{setUserData({user:tg?.initDataUnsafe?.user?.userName})}
+useEffect(() => {
+  telegram?.tg.onEvent('mainButtonClicked', onSendData)
+  return () => {
+  telegram?.tg.offEvent('mainButtonClicked', onSendData)
+  }
+}, [onSendData])
+
+if(donat == 0){
+  telegram?.MainButton.hide()
+}else{
+  telegram?.MainButton.setParams({text:`Оплатить ${donat}`})
+}
+// ////////////////////////////////////
+
+
   return (
       <main className="min-h-screen flex flex-col gap-[32px] justify-between items-center ">
         <NavBar isAuthenticated={true}/>
@@ -38,6 +68,14 @@ const userName = telegram?.user?.username
         className="text-2xl text-teal-600"
         onClick={userInfo}>User Info</UiButton> */}
         <span className="h-20 text-3xl text-red-800">user:{userName}</span>
+        <div className="h-20 text-3xl text-red-800">DONAT
+           <input 
+                type="number" 
+                value={donat} 
+                onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
+            />
+        </div>
+       
         <Footer/>
 
       </main>
