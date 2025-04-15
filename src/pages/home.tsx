@@ -69,14 +69,15 @@ if(donat == 0|| donat == undefined){
         className="text-2xl text-teal-600"
         onClick={userInfo}>User Info</UiButton> */}
         <span className="h-20 text-3xl text-red-800">user:{userName}</span>
-        <div className="h-20 text-3xl text-red-800">DONAT
+        <span className="h-20 text-3xl text-red-800">DONAT </span>
            <input 
-           className="mx-auto"
-                type="number" 
+           className=" h-9"
+                type="text" 
+                placeholder="введи кол-во звездочек"
                 value={donat} 
                 onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
             />
-        </div>
+       
        
         <Footer/>
 
