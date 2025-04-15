@@ -27,11 +27,13 @@ useEffect(()=>{
 },[telegram?.tg])
 const userName = telegram?.user?.username
 //////////////////////////////////////
+const chatId = telegram?.user?.id
 const queryId = telegram?.queryId
 const onSendData = useCallback(() => {
   const data = {
       queryId,
     donat,
+    chatId,
   }
   fetch('https://0355-185-102-186-131.ngrok-free.app/createInvoice', {
       method: 'POST',
@@ -71,7 +73,7 @@ if(donat == 0|| donat == undefined){
         <span className="h-20 text-3xl text-red-800">user:{userName}</span>
         <span className="h-20 text-3xl text-red-800">DONAT </span>
            <input 
-           className=" h-9"
+           className=" h-9 border border-amber-500"
                 type="text" 
                 placeholder="введи кол-во звездочек"
                 value={donat} 
