@@ -16,7 +16,7 @@ export function useTelegram() {
     const onClose = () => {
         tg.close()
     }
-    const MainButton = tg.MainButton.setParams({text:'HELLO MAIN BUTTON'})
+    const MainButton = tg.MainButton
 
 
     const onToggleButton = () => {

@@ -20,7 +20,7 @@ export interface Iuser{
 
 export default function Home() {
 const telegram = useTelegram()
- const [donat,setDonat]= useState<number>(0)
+ const [donat,setDonat]= useState<number>()
 
 useEffect(()=>{
   telegram?.tg.ready()
@@ -33,7 +33,7 @@ const onSendData = useCallback(() => {
       queryId,
     donat,
   }
-  fetch('http://localhost:3000/createInvoice', {
+  fetch('https://0355-185-102-186-131.ngrok-free.app/createInvoice', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ if(donat == 0){
         <span className="h-20 text-3xl text-red-800">user:{userName}</span>
         <div className="h-20 text-3xl text-red-800">DONAT
            <input 
-           className="mx-14"
+           className="mx-auto"
                 type="number" 
                 value={donat} 
                 onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
