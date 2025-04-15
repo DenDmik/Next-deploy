@@ -22,6 +22,12 @@ export default function StepsTable(){
                     Получить консультацию 
                   </p>
                   </UiButton>
+                  <Link href="/">
+                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10"  variant="goldoutlined">
+                       <p className='text-lg/5  text-teal-600'>
+                         Back to the Home </p>
+                      </UiButton>
+            </Link>
                 </div>
    </div>
    <div className="flex flex-col lg:w-1/2 pt-3 lg:pt-0 relative text-white">
@@ -68,11 +74,11 @@ export default function StepsTable(){
                   </p>
           </UiButton>
            <Link href="/">
-                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10" disabled={false} variant="goldoutlined">
+                      <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10"  variant="goldoutlined">
                        <p className='text-lg/5  text-teal-600'>
                          Back to the Home </p>
                       </UiButton>
-                    </Link>
+            </Link>
      </div>
 </div>
     )
