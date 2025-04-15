@@ -52,6 +52,7 @@ useEffect(() => {
 if(donat == 0){
   telegram?.MainButton.hide()
 }else{
+  telegram?.MainButton.show();
   telegram?.MainButton.setParams({text:`Оплатить ${donat}`})
 }
 // ////////////////////////////////////
@@ -70,6 +71,7 @@ if(donat == 0){
         <span className="h-20 text-3xl text-red-800">user:{userName}</span>
         <div className="h-20 text-3xl text-red-800">DONAT
            <input 
+           className="mx-14"
                 type="number" 
                 value={donat} 
                 onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
