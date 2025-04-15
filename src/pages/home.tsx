@@ -49,7 +49,7 @@ useEffect(() => {
   }
 }, [onSendData])
 
-if(donat == 0){
+if(donat == 0|| donat == undefined){
   telegram?.MainButton.hide()
 }else{
   telegram?.MainButton.show();
