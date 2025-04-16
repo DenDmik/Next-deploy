@@ -39,7 +39,7 @@ const onSendData = useCallback(() => {
   axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    alert(`RESULT:${response.data.invoice.name}`)
+    alert(`RESULT:${response.data.reply}`)
   })
   .catch(function (error) {
     console.log(error);
@@ -82,6 +82,9 @@ if(donat == 0|| donat == undefined){
                 value={donat} 
                 onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
             />
+             <button className="h-20 text-3xl text-red-800"
+             onClick={onSendData}
+             >ОПЛАТИТЬ </button>
        
        
         <Footer/>
