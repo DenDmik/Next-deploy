@@ -46,7 +46,9 @@ const onSendData = useCallback(() => {
     // return name
     const invoice = response.data.invoice
     console.log(invoice)
-    telegram?.tg.openInvoice(invoice)
+    telegram?.tg.openInvoice(invoice, ()=>{telegram.onClose})
+
+    
   })
   .catch(function (error) {
     console.log(error);
