@@ -42,6 +42,11 @@ const onSendData = useCallback(() => {
       },
       body: JSON.stringify(data)
   })
+  .then(res => res.json())
+.then(data => {
+  console.log('Ответ от сервера:', data);
+  telegram?.tg.openInvoice(data)
+})
 }, [donat])
 
 useEffect(() => {
