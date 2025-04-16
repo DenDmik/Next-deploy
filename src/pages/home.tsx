@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState, } from "react";
 import { UiButton } from "@/shared/ui-button";
 import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
+import axios from "axios";
 
 import { WebApp } from "@twa-dev/types";
 import { useTelegram } from "@/hooks/useTelegram";
@@ -35,19 +36,15 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  fetch('https://dcce-185-102-186-154.ngrok-free.app/createInvoice', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+  axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
+  .then(function (response) {
+    console.log(response);
+    alert(`RESULT:${response}`)
   })
-  .then(res => res.json())
-.then(result => {
-  console.log('Ответ от сервера:', result);
-  alert(`RESULT:${result}`)
-  return result
-})
+  .catch(function (error) {
+    console.log(error);
+    alert(`ERROR:${error}`)
+  });
 }, [donat])
 
 useEffect(() => {
