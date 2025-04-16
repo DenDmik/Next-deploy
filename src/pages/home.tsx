@@ -35,7 +35,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  fetch('https://840f-185-102-186-154.ngrok-free.app', {
+  fetch('https://3662-185-102-186-154.ngrok-free.app', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -43,9 +43,10 @@ const onSendData = useCallback(() => {
       body: JSON.stringify(data)
   })
   .then(res => res.json())
-.then(data => {
-  console.log('Ответ от сервера:', data);
-  telegram?.tg.openInvoice(data)
+.then(result => {
+  console.log('Ответ от сервера:', result);
+  alert(`RESULT:${result}`)
+  return result
 })
 }, [donat])
 
