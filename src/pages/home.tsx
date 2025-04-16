@@ -22,6 +22,7 @@ export interface Iuser{
 export default function Home() {
 const telegram = useTelegram()
  const [donat,setDonat]= useState<number>()
+ const [ name, setName] = useState('')
 
 useEffect(()=>{
   telegram?.tg.ready()
@@ -36,15 +37,18 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
+ return axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    alert(`RESULT:${response.data.invoice.name}`)
+    const name = response.data.invoice.name
+    setName(name)
+     alert(`RESULT:${name}`)
+    return name
   })
   .catch(function (error) {
     console.log(error);
     alert(`ERROR:${error}`)
-  });
+  })
 }, [donat])
 
 useEffect(() => {
@@ -86,7 +90,7 @@ if(donat == 0|| donat == undefined){
              onClick={onSendData}
              >ОПЛАТИТЬ </button>
        
-       
+       <span className="h-20 text-3xl text-red-800">{name}</span>
         <Footer/>
 
       </main>
