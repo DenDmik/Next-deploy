@@ -22,7 +22,7 @@ export interface Iuser{
 export default function Home() {
 const telegram = useTelegram()
  const [donat,setDonat]= useState<number>()
- const [ name, setName] = useState('')
+//  const [ name, setName] = useState('')
 
 useEffect(()=>{
   telegram?.tg.ready()
@@ -37,7 +37,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
- return axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
+  axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
     // const name = response.data.invoice.name
@@ -52,14 +52,14 @@ const onSendData = useCallback(() => {
     console.log(error);
     alert(`ERROR:${error}`)
   })
-}, [donat])
+}, [donat,telegram?.tg,queryId,chatId])
 
 useEffect(() => {
   telegram?.tg.onEvent('mainButtonClicked', onSendData)
   return () => {
   telegram?.tg.offEvent('mainButtonClicked', onSendData)
   }
-}, [onSendData])
+}, [onSendData,telegram?.tg])
 
 if(donat == 0|| donat == undefined){
   telegram?.MainButton.hide()
