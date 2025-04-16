@@ -46,7 +46,7 @@ const onSendData = useCallback(() => {
     // return name
     const invoice = response.data.invoice
     console.log(invoice)
-    telegram?.tg.openInvoice(invoice, ()=>{telegram.onClose})
+    telegram?.tg.openInvoice(invoice, telegram.onClose)
 
     
   })
@@ -54,7 +54,7 @@ const onSendData = useCallback(() => {
     console.log(error);
     alert(`ERROR:${error}`)
   })
-}, [donat,telegram?.tg,queryId,chatId])
+}, [donat,telegram?.tg,queryId,chatId,telegram?.onClose])
 
 useEffect(() => {
   telegram?.tg.onEvent('mainButtonClicked', onSendData)
