@@ -40,10 +40,13 @@ const onSendData = useCallback(() => {
  return axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    const name = response.data.invoice.name
-    setName(name)
-     alert(`RESULT:${name}`)
-    return name
+    // const name = response.data.invoice.name
+    // setName(name)
+    //  alert(`RESULT:${name}`)
+    // return name
+    const invoice = response.data.invoice
+    console.log(invoice)
+    telegram?.tg.openInvoice(invoice)
   })
   .catch(function (error) {
     console.log(error);
@@ -90,7 +93,7 @@ if(donat == 0|| donat == undefined){
              onClick={onSendData}
              >ОПЛАТИТЬ </button>
        
-       <span className="h-20 text-3xl text-red-800">{name}</span>
+       {/* <span className="h-20 text-3xl text-red-800">{name}</span> */}
         <Footer/>
 
       </main>
