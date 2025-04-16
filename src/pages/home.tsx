@@ -35,7 +35,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  fetch('https://0355-185-102-186-131.ngrok-free.app/createInvoice', {
+  fetch('https://840f-185-102-186-154.ngrok-free.app', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
