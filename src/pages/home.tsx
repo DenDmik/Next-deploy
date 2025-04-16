@@ -36,11 +36,10 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  alert(`${data.chatId,data.donat,data.queryId}`)
   axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    alert(`RESULT:${response}`)
+    alert(`RESULT:${response.data.name}`)
   })
   .catch(function (error) {
     console.log(error);
