@@ -39,7 +39,7 @@ const onSendData = useCallback(() => {
   axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    alert(`RESULT:${response.data.reply}`)
+    alert(`RESULT:${response.data.invoice.name}`)
   })
   .catch(function (error) {
     console.log(error);
