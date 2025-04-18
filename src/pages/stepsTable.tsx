@@ -1,10 +1,11 @@
 import { UiButton } from "@/shared/ui-button"
 import Link from "next/link"
+import { useTelegram } from "@/hooks/useTelegram";
 export default function StepsTable(){
 ///ReactContext:
     // const{isModalOpen,handleOpenModal,handleCloseModal} = useModal()
 //zustand:
-    
+const telegram = useTelegram()
     return(
 <div className=" max-w-screen-xl mx-auto flex flex-col mt-4 md:mt-8 font-Rubik
             lg:flex-row gap-2 sm:gap-10 bg-teal-600  p-6 rounded-2xl md:py-16">
@@ -28,6 +29,13 @@ export default function StepsTable(){
                          Back to the Home </p>
                       </UiButton>
             </Link>
+            <UiButton className="px-2 w-2/3 sm:w-1/2 mx-auto  rounded-2xl m-4 sm:mt-10"
+             variant="goldoutlined"
+             onClick={telegram?.onClose}>
+                       <p className='text-lg/5  text-teal-600'>
+                         Close </p>
+                      </UiButton>
+
                 </div>
    </div>
    <div className="flex flex-col lg:w-1/2 pt-3 lg:pt-0 relative text-white">

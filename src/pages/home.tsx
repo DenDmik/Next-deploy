@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { WebApp } from "@twa-dev/types";
 import { useTelegram } from "@/hooks/useTelegram";
+import { redirect } from "next/navigation";
 
 declare global {
   interface Window {
@@ -37,16 +38,13 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://dcce-185-102-186-154.ngrok-free.app/createInvoice',{data})
+  axios.post('https://6b2c-185-102-186-16.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
-    // const name = response.data.invoice.name
-    // setName(name)
-    //  alert(`RESULT:${name}`)
-    // return name
     const invoice = response.data.invoice
     console.log(invoice)
-    telegram?.tg.openInvoice(invoice, telegram.onClose)
+    // telegram?.tg.openInvoice(invoice, telegram.onClose)
+    telegram?.tg.openInvoice(invoice, redirect('/stepstable'))
 
     
   })
