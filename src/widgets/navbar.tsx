@@ -1,6 +1,6 @@
 
 import { UiButton } from '@/shared/ui-button';
-import { useTelegram} from '@/hooks/useTelegram'
+// import { useTelegram} from '@/hooks/useTelegram'
 import Link from 'next/link';
 
 
@@ -16,7 +16,7 @@ export function NavBar({
     isAuthenticated: boolean;
   }){
 
-const telegram = useTelegram()
+// const telegram = useTelegram()
 
   return (
 
