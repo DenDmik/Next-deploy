@@ -34,7 +34,7 @@ const userName = telegram?.user?.username
 const handleInvoiceClose = (status:InvoiceStatuses) => {
   if (status === 'paid') {
     // Перенаправление при успешной оплате
-    window.location.href = '/success-page'; // Укажите ваш URL
+    window.location.href = '/stepstable'; // Укажите ваш URL
   } else {
     // Стандартное закрытие для других случаев
     telegram?.onClose?.();
