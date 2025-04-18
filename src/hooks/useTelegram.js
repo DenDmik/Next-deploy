@@ -26,6 +26,7 @@ export function useTelegram() {
             MainButton.show();
         }
     }
+   
     
     return {
         onClose,
@@ -33,6 +34,7 @@ export function useTelegram() {
         tg,
         user: tg.initDataUnsafe?.user,
         queryId: tg.initDataUnsafe?.query_id,
-        MainButton
+        MainButton,
+        
     }
 }

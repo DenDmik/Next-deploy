@@ -4,9 +4,8 @@ import { NavBar } from "@/widgets/navbar";
 import { Footer } from "@/widgets/footer";
 import axios from "axios";
 
-import { WebApp } from "@twa-dev/types";
+import { InvoiceStatuses, WebApp } from "@twa-dev/types";
 import { useTelegram } from "@/hooks/useTelegram";
-import { redirect } from "next/navigation";
 
 declare global {
   interface Window {
@@ -21,6 +20,8 @@ export interface Iuser{
 }
 
 export default function Home() {
+
+
 const telegram = useTelegram()
  const [donat,setDonat]= useState<number>()
 //  const [ name, setName] = useState('')
@@ -29,6 +30,16 @@ useEffect(()=>{
   telegram?.tg.ready()
 },[telegram?.tg])
 const userName = telegram?.user?.username
+////////////////////////////////////////
+const handleInvoiceClose = (status:InvoiceStatuses) => {
+  if (status === 'paid') {
+    // Перенаправление при успешной оплате
+    window.location.href = '/success-page'; // Укажите ваш URL
+  } else {
+    // Стандартное закрытие для других случаев
+    telegram?.onClose?.();
+  }
+};
 //////////////////////////////////////
 const chatId = telegram?.user?.id
 const queryId = telegram?.queryId
@@ -44,7 +55,7 @@ const onSendData = useCallback(() => {
     const invoice = response.data.invoice
     console.log(invoice)
     // telegram?.tg.openInvoice(invoice, telegram.onClose)
-    telegram?.tg.openInvoice(invoice, redirect('/stepstable'))
+    telegram?.tg.openInvoice(invoice,(status)=>{handleInvoiceClose(status)} )
 
     
   })
