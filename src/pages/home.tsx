@@ -34,7 +34,7 @@ const userName = telegram?.user?.username
 const handleInvoiceClose = (status:InvoiceStatuses) => {
   if (status === 'paid') {
     // Перенаправление при успешной оплате
-    window.location.href = '/stepstable'; // Укажите ваш URL
+    window.location.href = 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Mark_Twain_by_AF_Bradley.jpg'; // Укажите ваш URL
   } else {
     // Стандартное закрытие для других случаев
     telegram?.onClose?.();
