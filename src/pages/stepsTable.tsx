@@ -4,7 +4,7 @@ import { useTelegram } from "@/hooks/useTelegram";
 export default function StepsTable(){
 ///ReactContext:
     // const{isModalOpen,handleOpenModal,handleCloseModal} = useModal()
-//zustand:
+
 const telegram = useTelegram()
     return(
 <div className=" max-w-screen-xl mx-auto flex flex-col mt-4 md:mt-8 font-Rubik

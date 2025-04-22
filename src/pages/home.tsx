@@ -35,7 +35,8 @@ const handleInvoiceClose = (status:InvoiceStatuses) => {
   if (status === 'paid') {
     // Перенаправление при успешной оплате
     telegram?.MainButton.hide()
-    window.location.href = '/stepstable'; // Укажите ваш URL
+    const id = 1
+    window.location.href = `/phrase/${id}`; // Укажите ваш URL 
   } else {
     // Стандартное закрытие для других случаев
     telegram?.onClose?.();
@@ -51,6 +52,7 @@ const onSendData = useCallback(() => {
     chatId,
   }
   axios.post('https://5ff9-185-102-186-215.ngrok-free.app/createInvoice',{data})
+              
   .then(function (response) {
     console.log(response);
     const invoice = response.data.invoice
