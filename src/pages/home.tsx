@@ -34,7 +34,8 @@ const userName = telegram?.user?.username
 const handleInvoiceClose = (status:InvoiceStatuses) => {
   if (status === 'paid') {
     // Перенаправление при успешной оплате
-    window.location.href = 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Mark_Twain_by_AF_Bradley.jpg'; // Укажите ваш URL
+    telegram?.MainButton.hide()
+    window.location.href = '/stepstable'; // Укажите ваш URL
   } else {
     // Стандартное закрытие для других случаев
     telegram?.onClose?.();
@@ -49,7 +50,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://9d64-185-102-186-233.ngrok-free.app/createInvoice',{data})
+  axios.post('https://5ff9-185-102-186-215.ngrok-free.app/createInvoice',{data})
   .then(function (response) {
     console.log(response);
     const invoice = response.data.invoice
