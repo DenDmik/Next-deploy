@@ -36,7 +36,7 @@ const handleInvoiceClose = (status:InvoiceStatuses) => {
     // Перенаправление при успешной оплате
     telegram?.MainButton.hide()
     const id = 1
-    window.location.href = `/phrase/${id}`; // Укажите ваш URL 
+    window.location.href = `/phrase/${id}`; 
   } else {
     // Стандартное закрытие для других случаев
     telegram?.onClose?.();
@@ -51,7 +51,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://5ff9-185-102-186-215.ngrok-free.app/createInvoice',{data})
+  axios.post('https://2c45-185-102-186-215.ngrok-free.app/createInvoice',{data})
               
   .then(function (response) {
     console.log(response);

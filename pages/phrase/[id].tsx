@@ -14,7 +14,7 @@ export default function Page(){
         const fetchData = async ():Promise<IPrase|undefined> => {
           try {
             const response = await axios.get(
-              `https://5ff9-185-102-186-215.ngrok-free.app/bd/${id}`
+              `https://2c45-185-102-186-215.ngrok-free.app/bd/${id}`
             );
             console.log(response.data);
             setData(response.data)
