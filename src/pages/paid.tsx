@@ -1,7 +1,6 @@
 import { UiButton } from "@/shared/ui-button"
 import Link from "next/link"
 import { useTelegram } from "@/hooks/useTelegram";
-import Image from "next/image";
 export type IPrase = {
     id : number
     phrase :string
