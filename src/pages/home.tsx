@@ -51,7 +51,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://2c45-185-102-186-215.ngrok-free.app/createInvoice',{data})
+  axios.post('https://dae9-2a00-7c80-0-3b4-00-14.ngrok-free.app/createInvoice',{data})
               
   .then(function (response) {
     console.log(response);
