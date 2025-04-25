@@ -45,13 +45,23 @@ const handleInvoiceClose = (status:InvoiceStatuses) => {
 //////////////////////////////////////
 const chatId = telegram?.user?.id
 const queryId = telegram?.queryId
+/////////////////////////////
+// const onSendDataKb = useCallback(()=>{
+//   const data = {
+//     donat,
+//     chatId,
+//   }
+//   telegram?.tg.sendData(JSON.stringify(data))
+// },[donat,chatId])
+/////////////////////////////////////////////////////
 const onSendData = useCallback(() => {
   const data = {
       queryId,
     donat,
     chatId,
   }
-  axios.post('https://dae9-2a00-7c80-0-3b4-00-14.ngrok-free.app/createInvoice',{data})
+  axios.post('https://40d9-185-102-186-35.ngrok-free.app/createInvoice',{data})
+  // axios.post('http://localhost:3000/createInvoice',{data})
               
   .then(function (response) {
     console.log(response);
@@ -67,7 +77,7 @@ const onSendData = useCallback(() => {
     alert(`ERROR:${error}`)
   })
 }, [donat,telegram?.tg,queryId,chatId,telegram?.onClose])
-
+////////////////////////////////////////////////////////////////
 useEffect(() => {
   telegram?.tg.onEvent('mainButtonClicked', onSendData)
   return () => {

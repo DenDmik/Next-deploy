@@ -11,21 +11,25 @@ export default function Page(){
     useEffect(() => {
         if (!id) return; // Проверяем наличие id
     
-        const fetchData = async ():Promise<IPrase|undefined> => {
-          try {
-            const response = await axios.get(
-              `https://dae9-2a00-7c80-0-3b4-00-14.ngrok-free.app/bd/${id}`
-            );
-            console.log(response.data);
-            setData(response.data)
-            return response.data
-          } catch (error) {
-            console.error('Error:', error);
-            alert(`ERROR: ${error instanceof Error ? error.message : 'Unknown error'}`);
-          }
-        };
+        //////////////////////////
+        axios.post('https://40d9-185-102-186-35.ngrok-free.app/bd/1',{d:''})
+              
+  .then(function (response) {
+    console.log(response);
+  const data = response.data
+  setData(data)
     
-        fetchData();
+    
+
+    
+  })
+  .catch(function (error) {
+    console.log(error);
+    alert(`ERROR:${error}`)
+  })
+
+        ///////////////////////////////
+    
       }, [id]); // Зависимость от id
       
       if(!data) return

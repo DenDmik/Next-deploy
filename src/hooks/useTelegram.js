@@ -12,6 +12,7 @@ export function useTelegram() {
     
       if (!isReady) return null; 
     const tg = window.Telegram.WebApp
+    
 
     const onClose = () => {
         tg.close()

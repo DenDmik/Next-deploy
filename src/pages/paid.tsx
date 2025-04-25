@@ -31,12 +31,12 @@ return (
         className=" absolute 
          rounded-lg" /> */}
   <div 
-  className="bg-local bg-cover bg-center rounded-lg"
+  className="bg-local bg-cover bg-center rounded-lg opacity-75"
   style={{ 
     backgroundImage: `url(${image})`
   }}
 >
-    <h1 className="text-center py-6 my-4 text-4xl text-amber-500">{phrase}</h1>
+    <h1 className="text-center py-6 my-4 text-4xl font-extrabold text text-amber-500">{phrase}</h1>
     <h1 className="text-center text-2xl text-amber-500">{writer}</h1>
 
   
