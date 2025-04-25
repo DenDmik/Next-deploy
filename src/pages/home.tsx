@@ -93,33 +93,51 @@ if(donat == 0|| donat == undefined){
 }
 // ////////////////////////////////////
 
-
-  return (
-      <main className="min-h-screen flex flex-col gap-[32px] justify-between items-center ">
-        <NavBar isAuthenticated={true}/>
-        <div className="text-red-700 text-4xl text-center">HELLO</div>
-        <UiButton variant="primary" 
-        className="text-2xl text-amber-700"
-        onClick={telegram?.onClose}>CLOSE</UiButton>
-        {/* <UiButton variant="secondary" 
-        className="text-2xl text-teal-600"
-        onClick={userInfo}>User Info</UiButton> */}
-        <span className="h-20 text-3xl text-red-800">user:{userName}</span>
-        <span className="h-20 text-3xl text-red-800">DONAT </span>
-           <input 
+const userNameTest = 'Клайперон Бенедиктович'
+  return (<div className="min-h-screen bg-gray-300">
+  <NavBar />
+      <main className="flex flex-col justify-around items-center gap-5 my-5 mx-2 ">
+        
+        <div className="text-amber-500 text-3xl text-center mt-4 ">
+        Привет дорогой(ая)     {userNameTest}
+        </div>
+        <div className="flex flex-col ">
+          <span className=" text-3xl font-bold text-teal-500">
+          Хочешь цитат ? </span>
+          <span className=" text-3xl font-bold text-teal-500">
+          Сделай донат !
+          </span>
+          </div>
+        
+           {/* <input 
            className=" h-9 border border-amber-500"
                 type="text" 
                 placeholder="введи кол-во звездочек"
                 value={donat} 
                 onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
+            /> */}
+
+  <input 
+           className="
+           px-2 h-10 rounded  flex  items-center justify-center 
+           text-xl font-bold  text-amber-300
+            bg-gray-400 border-yellow-300 
+             w-2/3 "
+                type="text" 
+                placeholder=" звезды ⭐️=>🍺"
+                value={donat} 
+                // onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
+                onChange={(e)=>setDonat(+e.target.value)}
             />
-             <button className="h-20 text-3xl text-red-800"
-             onClick={onSendData}
-             >ОПЛАТИТЬ </button>
+
+
+            <UiButton variant="goldoutlined" onClick={onSendData} className="w-2/3 mt-4"
+            >ЗАПЛАТИТЬ</UiButton>
        
-       {/* <span className="h-20 text-3xl text-red-800">{name}</span> */}
-        <Footer/>
+     
 
       </main>
+      <Footer/>
+      </div>
   );
 }
