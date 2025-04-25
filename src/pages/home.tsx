@@ -93,13 +93,13 @@ if(donat == 0|| donat == undefined){
 }
 // ////////////////////////////////////
 
-const userNameTest = 'Клайперон Бенедиктович'
+// const userNameTest = 'Клайперон Бенедиктович'
   return (<div className="min-h-screen bg-gray-300">
   <NavBar />
       <main className="flex flex-col justify-around items-center gap-5 my-5 mx-2 ">
         
         <div className="text-amber-500 text-3xl text-center mt-4 ">
-        Привет дорогой(ая)     {userNameTest}
+        Привет дорогой(ая)     {userName}
         </div>
         <div className="flex flex-col ">
           <span className=" text-3xl font-bold text-teal-500">

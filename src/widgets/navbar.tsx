@@ -1,7 +1,6 @@
 
 import { UiButton } from '@/shared/ui-button';
 import { useTelegram} from '@/hooks/useTelegram'
-import Link from 'next/link';
 
 
 
