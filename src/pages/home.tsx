@@ -60,7 +60,7 @@ const onSendData = useCallback(() => {
     donat,
     chatId,
   }
-  axios.post('https://40d9-185-102-186-35.ngrok-free.app/createInvoice',{data})
+  axios.post('https://2925-185-102-186-118.ngrok-free.app/createInvoice',{data})
   // axios.post('http://localhost:3000/createInvoice',{data})
               
   .then(function (response) {

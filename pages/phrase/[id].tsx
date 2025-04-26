@@ -12,7 +12,7 @@ export default function Page(){
         if (!id) return; // Проверяем наличие id
     
         //////////////////////////
-        axios.post('https://40d9-185-102-186-35.ngrok-free.app/bd/1',{d:''})
+        axios.post('https://2925-185-102-186-118.ngrok-free.app/bd/1',{d:''})
               
   .then(function (response) {
     console.log(response);
