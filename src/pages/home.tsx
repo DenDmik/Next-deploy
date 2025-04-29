@@ -1,11 +1,14 @@
-import { useCallback, useEffect, useState, } from "react";
+import {  useCallback, useEffect, useRef, } from "react";
 import { UiButton } from "@/shared/ui-button";
 import { NavBar } from "@/widgets/navbar";
-import { Footer } from "@/widgets/footer";
+// import { Footer } from "@/widgets/footer";
 import axios from "axios";
 
 import { InvoiceStatuses, WebApp } from "@twa-dev/types";
 import { useTelegram } from "@/hooks/useTelegram";
+import { useFormDonat } from "@/features/donats/model/use-form-donat";
+import { Footer } from "@/widgets/footer";
+// import { Description } from "@/widgets/description";
 
 declare global {
   interface Window {
@@ -23,14 +26,31 @@ export default function Home() {
 
 
 const telegram = useTelegram()
- const [donat,setDonat]= useState<number>()
-//  const [ name, setName] = useState('')
 
 useEffect(()=>{
   telegram?.tg.ready()
 },[telegram?.tg])
-const userName = telegram?.user?.username
+const userName = telegram?.user?.first_name
 ////////////////////////////////////////
+ const donatRef = useRef(0)
+ 
+    const{register, 
+        submit,
+        resetForm,
+        handleSubmit,
+        errors,
+        watch,
+        }=useFormDonat()
+
+donatRef.current = watch('donat')
+  const donat = donatRef.current     
+//////////////////////////////////////
+const chatId = telegram?.user?.id
+const queryId = telegram?.queryId
+/////////////////////////////
+/////////////////////////////////////////////////////
+const onSendData = useCallback(() => {
+
 const handleInvoiceClose = (status:InvoiceStatuses) => {
   if (status === 'paid') {
     // Перенаправление при успешной оплате
@@ -42,25 +62,17 @@ const handleInvoiceClose = (status:InvoiceStatuses) => {
     telegram?.onClose?.();
   }
 };
-//////////////////////////////////////
-const chatId = telegram?.user?.id
-const queryId = telegram?.queryId
-/////////////////////////////
-// const onSendDataKb = useCallback(()=>{
-//   const data = {
-//     donat,
-//     chatId,
-//   }
-//   telegram?.tg.sendData(JSON.stringify(data))
-// },[donat,chatId])
-/////////////////////////////////////////////////////
-const onSendData = useCallback(() => {
+const donatCurrent = donat
   const data = {
+    donatCurrent,
       queryId,
-    donat,
     chatId,
   }
-  axios.post('https://2925-185-102-186-118.ngrok-free.app/createInvoice',{data})
+  if(!donat){
+    console.log(donat)
+    return
+  };
+  axios.post('https://e8c0-185-102-186-86.ngrok-free.app/createInvoice',{data})
   // axios.post('http://localhost:3000/createInvoice',{data})
               
   .then(function (response) {
@@ -76,7 +88,8 @@ const onSendData = useCallback(() => {
     console.log(error);
     alert(`ERROR:${error}`)
   })
-}, [donat,telegram?.tg,queryId,chatId,telegram?.onClose])
+},
+[  queryId, chatId,  telegram, donat])
 ////////////////////////////////////////////////////////////////
 useEffect(() => {
   telegram?.tg.onEvent('mainButtonClicked', onSendData)
@@ -89,16 +102,17 @@ if(donat == 0|| donat == undefined){
   telegram?.MainButton.hide()
 }else{
   telegram?.MainButton.show();
-  telegram?.MainButton.setParams({text:`Оплатить ${donat}`})
+  telegram?.MainButton.setParams({text:`Оплатить`})
 }
 // ////////////////////////////////////
 
 // const userNameTest = 'Клайперон Бенедиктович'
-  return (<div className="min-h-screen bg-gray-300">
+  return (<div className="min-h-screen  bg-gray-300 flex flex-col justify-between">
   <NavBar />
-      <main className="flex flex-col justify-around items-center gap-5 my-5 mx-2 ">
+  {/* ///////////////////////// */}
+      <div className="flex flex-col justify-around items-center gap-3 my-5 mx-2 ">
         
-        <div className="text-amber-500 text-3xl text-center mt-4 ">
+        <div className="text-amber-500 text-3xl text-center mt-2 ">
         Привет дорогой(ая)     {userName}
         </div>
         <div className="flex flex-col ">
@@ -109,34 +123,58 @@ if(donat == 0|| donat == undefined){
           </span>
           </div>
         
-           {/* <input 
-           className=" h-9 border border-amber-500"
-                type="text" 
-                placeholder="введи кол-во звездочек"
-                value={donat} 
-                onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
-            /> */}
 
-  <input 
+   {/* <input 
            className="
-           px-2 h-10 rounded  flex  items-center justify-center 
-           text-xl font-bold  text-amber-300
+           px-2 h-12 rounded  flex  items-center justify-center 
+           text-xl font-bold  text-amber-300 text-center
             bg-gray-400 border-yellow-300 
              w-2/3 "
-                type="text" 
+                type="number" 
                 placeholder=" звезды ⭐️=>🍺"
                 value={donat} 
-                // onChange={(e) => setDonat(+e.target.value)} // Устанавливаете состояние при изменении инпута
                 onChange={(e)=>setDonat(+e.target.value)}
             />
+            <UiButton variant="goldoutlined" onClick={onSendData} className="w-2/3 mt-2 h-12"
+            >ЗАПЛАТИТЬ</UiButton> 
 
-
-            <UiButton variant="goldoutlined" onClick={onSendData} className="w-2/3 mt-4"
-            >ЗАПЛАТИТЬ</UiButton>
+            <UiButton type="button" variant="secondary" className="w-2/3 mt-4"
+                  onClick={()=>(setDonat(0))}>
+                        Очистить форму
+            </UiButton> */}
        
-     
+       
+        <form onSubmit={handleSubmit(submit)} className="w-full mx-auto flex flex-col
+        items-center">
+             <input 
+           className="
+           px-2 h-10 rounded  flex  items-center justify-center 
+           text-xl font-bold  text-amber-300 text-center
+            bg-gray-400 border-yellow-300 
+             w-2/3 
+             "
+                type="number" 
+                placeholder=" звезды ⭐️=>🍺"
+            {...register('donat',{required:'заполни donat'})}    
+            />
+            
+            {errors.donat&&<div className="h-2 text-sm text-red-400">
+                {errors?.donat?.message}</div>}
+            <UiButton type="submit" variant="goldoutlined"  className="w-2/3 mt-4"
+                        >ЗАПЛАТИТЬ
+            </UiButton>
+            <UiButton type="button" variant="secondary" className="w-2/3 mt-4"
+                       onClick={resetForm}>
+                        Очистить форму
+            </UiButton>
 
-      </main>
+        </form>
+{donat?donat:<div className="text-red-900">not any donat</div>}
+        
+
+       </div> 
+      {/* ////////////////////////////////// */}
+      {/* <Description userName={userName}/> */}
       <Footer/>
       </div>
   );

@@ -2,7 +2,7 @@ import { UiLink } from "@/shared/ui-link";
 
 export function Footer(){
 return (
-    <div id="contacts" className="absolute bottom-0 min-w-full bg-yellow-50 border-y-[1px] border-yellow-300
+    <div id="contacts" className=" min-w-full bg-yellow-50 border-y-[1px] border-yellow-300
        flex flex-col justify-center items-center pt-2  gap-2 ">
       <h1 className="text-lg font-semibold">Contact us</h1>
       <div className="flex justify-center items-center">
